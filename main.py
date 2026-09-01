@@ -247,28 +247,49 @@ header { visibility: hidden; }
 
 /* ---------- Login / registration ---------- */
 .login-box {
-    max-width: 650px;
-    margin: 40px auto;
-    background: rgba(255,255,255,.98);
-    padding: 40px;
-    border-radius: 25px;
-    box-shadow: 0 18px 55px rgba(15,23,42,.11);
-    border: 1px solid #e2e8f0;
+    max-width: 1125px;
+    margin: 10px auto 30px auto;
+    background: linear-gradient(135deg, #111f55 0%, #1e40af 52%, #2563eb 100%);
+    padding: 52px 35px;
+    border-radius: 28px;
+    box-shadow: 0 18px 45px rgba(30,64,175,.22);
+    border: 1px solid rgba(255,255,255,.12);
+    position: relative;
+    overflow: hidden;
+}
+
+.login-box::after {
+    content: "";
+    position: absolute;
+    width: 280px;
+    height: 280px;
+    right: -90px;
+    top: -150px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.08);
 }
 
 .brand {
     text-align: center;
-    font-size: 42px;
-    font-weight: 850;
-    color: #172554;
-    letter-spacing: -1.2px;
+    font-size: 62px;
+    line-height: 1.05;
+    font-weight: 900;
+    color: #ffffff;
+    letter-spacing: -1.8px;
+    text-shadow: 0 3px 12px rgba(0,0,0,.18);
+    position: relative;
+    z-index: 1;
 }
 
 .subtitle {
     text-align: center;
-    color: #64748b;
-    margin-bottom: 30px;
-    font-size: 17px;
+    color: rgba(255,255,255,.94);
+    margin-top: 14px;
+    margin-bottom: 8px;
+    font-size: 20px;
+    font-weight: 500;
+    position: relative;
+    z-index: 1;
 }
 
 .welcome-bar {
@@ -435,6 +456,473 @@ hr {
     .login-box { padding: 28px; }
     .brand { font-size: 36px; }
     .welcome-title { font-size: 26px; }
+}
+
+
+
+/* =========================================================
+   LEARNHUB VISUAL ENHANCEMENT LAYER
+   Styling only: no application logic or functionality changed.
+   ========================================================= */
+
+/* Page rhythm and typography */
+.main .block-container { max-width: 1320px; }
+.main p, .main label, .main .stCaption { color: #475569; }
+.main h1, .main h2, .main h3, .main h4 { font-weight: 800; }
+
+/* Stronger brand presence */
+.hero, .login-box, .profile-card, .admin-hero {
+    box-shadow: 0 18px 48px rgba(30, 64, 175, .16);
+}
+.hero::before, .login-box::before, .profile-card::before, .admin-hero::before {
+    content: "";
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    left: -80px;
+    bottom: -110px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.07);
+}
+
+/* Better section separation */
+.main .stMarkdown h2, .main .stMarkdown h3 {
+    margin-top: 1.1rem;
+    margin-bottom: .75rem;
+}
+
+/* Navigation buttons */
+.main .stButton > button {
+    min-height: 48px;
+    border-radius: 13px;
+    background: linear-gradient(180deg, #ffffff 0%, #f7f9fd 100%);
+    border: 1px solid #d7dfeb;
+    color: #1e3a8a;
+}
+.main .stButton > button:hover {
+    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+    border-color: #3b82f6;
+    color: #1d4ed8;
+}
+.main .stButton > button[kind="primary"] {
+    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 60%, #0ea5e9 100%);
+    color: #fff;
+    border: none;
+}
+
+/* Tabs */
+.stTabs [data-baseweb="tab-list"] {
+    gap: 8px;
+    background: #eef4ff;
+    padding: 7px;
+    border-radius: 14px;
+}
+.stTabs [data-baseweb="tab"] {
+    border-radius: 10px;
+    padding: 9px 16px;
+    font-weight: 700;
+}
+.stTabs [aria-selected="true"] {
+    background: #ffffff;
+    color: #1d4ed8;
+    box-shadow: 0 4px 14px rgba(30,64,175,.10);
+}
+
+/* Expanders and forms */
+.streamlit-expanderHeader {
+    background: linear-gradient(135deg, #f8fbff, #eef4ff);
+    border-radius: 12px;
+    font-weight: 750;
+    color: #1e3a8a;
+}
+div[data-testid="stForm"] {
+    background: rgba(255,255,255,.72);
+    border: 1px solid #dbe5f1;
+    border-radius: 18px;
+    padding: 20px;
+    box-shadow: 0 10px 28px rgba(15,23,42,.05);
+}
+
+/* Inputs */
+.stTextInput, .stTextArea, .stSelectbox, .stNumberInput, .stDateInput, .stTimeInput {
+    margin-bottom: 8px;
+}
+[data-baseweb="input"], [data-baseweb="textarea"] {
+    border-radius: 12px !important;
+}
+
+/* Metric cards */
+[data-testid="stMetric"] {
+    min-height: 112px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: linear-gradient(145deg, #ffffff 0%, #f6f9ff 100%);
+    border-top: 4px solid #2563eb;
+}
+[data-testid="stMetricLabel"] { font-weight: 700; color: #64748b; }
+
+/* Tables */
+[data-testid="stDataFrame"] > div {
+    border-radius: 14px;
+}
+[data-testid="stDataFrame"] table { font-size: 14px; }
+
+/* Progress bars */
+.stProgress > div > div > div > div {
+    background: linear-gradient(90deg, #1d4ed8, #0ea5e9);
+    border-radius: 999px;
+}
+
+/* Alerts */
+div[data-testid="stAlert"] {
+    border-radius: 14px;
+    box-shadow: 0 5px 18px rgba(15,23,42,.04);
+}
+
+/* Radio / checkbox cards */
+.stRadio > div, .stCheckbox > label {
+    background: rgba(255,255,255,.62);
+    border-radius: 12px;
+}
+
+/* Download buttons */
+.stDownloadButton > button {
+    width: 100%;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #1e40af, #2563eb);
+    color: #fff;
+    border: none;
+    font-weight: 750;
+}
+.stDownloadButton > button:hover {
+    background: linear-gradient(135deg, #172554, #1d4ed8);
+    color: #fff;
+}
+
+/* Footer-style separators */
+.main hr { border-top: 1px solid #dbe5f1; }
+
+/* Responsive alignment */
+@media (max-width: 900px) {
+    .hero-brand, .brand { font-size: 44px; }
+    .section-title { font-size: 24px; }
+}
+
+
+
+/* =========================================================
+   TALENT-LMS INSPIRED PROFESSIONAL UI
+   VISUAL ONLY - application functionality is untouched.
+   ========================================================= */
+
+:root {
+    --lh-navy: #132a63;
+    --lh-blue: #2457d6;
+    --lh-sky: #2f8df0;
+    --lh-bg: #f4f7fb;
+    --lh-border: #dfe6f0;
+    --lh-text: #17305f;
+    --lh-muted: #6b7b93;
+}
+
+/* Overall website canvas */
+.stApp {
+    background:
+        radial-gradient(circle at 92% 0%, rgba(47,141,240,.13), transparent 24%),
+        radial-gradient(circle at 4% 30%, rgba(36,87,214,.08), transparent 25%),
+        linear-gradient(180deg, #f7f9fd 0%, #eef3f9 100%);
+}
+
+.main .block-container {
+    max-width: 1380px;
+    padding: 1.25rem 2rem 3rem;
+}
+
+/* Brand header: compact enterprise-LMS feel */
+.hero,
+.login-box {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(105deg, #14265e 0%, #2349b9 54%, #2694e8 100%);
+    border: 0;
+    border-radius: 0 0 24px 24px;
+    box-shadow: 0 12px 34px rgba(20,38,94,.18);
+}
+
+.hero {
+    padding: 27px 34px 24px;
+    margin: -1.25rem -2rem 24px;
+}
+
+.hero::before,
+.login-box::before {
+    content: "";
+    position: absolute;
+    width: 260px;
+    height: 260px;
+    right: -75px;
+    top: -170px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.10);
+}
+
+.hero::after,
+.login-box::after {
+    content: "";
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    left: -95px;
+    bottom: -125px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.06);
+}
+
+.hero-brand,
+.brand {
+    position: relative;
+    z-index: 1;
+    font-size: 50px;
+    font-weight: 900;
+    letter-spacing: -1.8px;
+    color: #fff;
+    text-align: center;
+}
+
+.hero-subtitle,
+.subtitle {
+    position: relative;
+    z-index: 1;
+    color: rgba(255,255,255,.92);
+    text-align: center;
+    font-size: 17px;
+    font-weight: 600;
+}
+
+/* Dashboard welcome banners */
+.profile-card,
+.admin-hero {
+    position: relative;
+    overflow: hidden;
+    border: 0;
+    border-radius: 22px;
+    background: linear-gradient(110deg, #15265f 0%, #2349bd 55%, #159bd0 100%);
+    box-shadow: 0 14px 36px rgba(21,50,126,.18);
+    padding: 30px 34px;
+    margin-bottom: 24px;
+}
+
+.profile-card::after,
+.admin-hero::after {
+    content: "";
+    position: absolute;
+    width: 230px;
+    height: 230px;
+    right: -75px;
+    top: -130px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.08);
+}
+
+.admin-kicker {
+    letter-spacing: 2px;
+    font-size: 12px;
+    font-weight: 800;
+    color: rgba(255,255,255,.72);
+}
+
+.admin-title {
+    font-size: 34px;
+    font-weight: 900;
+    color: #fff;
+    margin-top: 8px;
+}
+
+.admin-subtitle {
+    font-size: 16px;
+    color: rgba(255,255,255,.90);
+}
+
+/* Make dashboard metrics look like real LMS overview cards */
+[data-testid="stMetric"] {
+    min-height: 118px;
+    padding: 20px 22px;
+    border: 1px solid #e1e7f0;
+    border-radius: 18px;
+    background: rgba(255,255,255,.94);
+    box-shadow: 0 8px 24px rgba(23,48,95,.07);
+    border-top: 4px solid #2d68dd;
+}
+
+[data-testid="stMetricLabel"] {
+    color: #65758e;
+    font-size: 13px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .25px;
+}
+
+[data-testid="stMetricValue"] {
+    color: #162f67;
+    font-weight: 900;
+}
+
+/* Navigation buttons become clean LMS menu tiles */
+.main .stButton > button {
+    min-height: 48px;
+    border-radius: 12px;
+    border: 1px solid #d9e1ec;
+    background: #fff;
+    color: #18366f;
+    font-weight: 700;
+    box-shadow: 0 3px 12px rgba(23,48,95,.045);
+}
+
+.main .stButton > button:hover {
+    border-color: #3b76e8;
+    background: linear-gradient(180deg, #fff 0%, #edf4ff 100%);
+    color: #1d55c4;
+    box-shadow: 0 8px 20px rgba(37,87,214,.12);
+    transform: translateY(-1px);
+}
+
+/* Give action/card buttons more visual hierarchy */
+.main .stButton > button[kind="primary"] {
+    background: linear-gradient(135deg, #193b9b, #2466df 65%, #159bd0);
+    color: white;
+    border: none;
+}
+
+/* Cards and content sections */
+.card,
+div[data-testid="stForm"],
+.stExpander {
+    border-radius: 18px;
+}
+
+.card {
+    border: 1px solid #e0e7f1;
+    background: rgba(255,255,255,.97);
+    box-shadow: 0 9px 26px rgba(23,48,95,.065);
+}
+
+div[data-testid="stForm"] {
+    border: 1px solid #dfe6f0;
+    background: rgba(255,255,255,.88);
+    box-shadow: 0 10px 28px rgba(23,48,95,.06);
+}
+
+/* Login page: same branding language as dashboards */
+.login-box {
+    max-width: 1120px;
+    margin: 0 auto 26px;
+    padding: 42px 32px;
+    border-radius: 24px;
+}
+
+.welcome-bar {
+    max-width: 920px;
+    min-height: 82px;
+    margin: 0 auto 26px;
+    border: 0;
+    border-radius: 18px;
+    background: linear-gradient(105deg, #14265e 0%, #2349bd 58%, #278fe7 100%);
+    box-shadow: 0 12px 30px rgba(23,55,133,.18);
+}
+
+.welcome-title {
+    color: #fff;
+    font-size: 32px;
+    font-weight: 900;
+}
+
+/* Inputs / selectors */
+.stTextInput input,
+.stTextArea textarea,
+.stNumberInput input,
+.stDateInput input,
+.stTimeInput input,
+[data-baseweb="select"] > div {
+    border: 1px solid #d8e1ed !important;
+    border-radius: 11px !important;
+    background: #fff !important;
+    color: #18366f !important;
+}
+
+.stTextInput input:focus,
+.stTextArea textarea:focus,
+.stNumberInput input:focus,
+.stDateInput input:focus,
+.stTimeInput input:focus,
+[data-baseweb="select"] > div:focus-within {
+    border-color: #3674e8 !important;
+    box-shadow: 0 0 0 3px rgba(54,116,232,.12) !important;
+}
+
+label,
+.stRadio label,
+.stCheckbox label {
+    color: #27456f !important;
+    font-weight: 650 !important;
+}
+
+/* Data tables */
+[data-testid="stDataFrame"] {
+    border: 1px solid #dfe6f0;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 7px 22px rgba(23,48,95,.055);
+    background: #fff;
+}
+
+/* Tabs */
+.stTabs [data-baseweb="tab-list"] {
+    gap: 5px;
+    padding: 6px;
+    border-radius: 13px;
+    background: #e8effa;
+}
+
+.stTabs [data-baseweb="tab"] {
+    border-radius: 9px;
+    font-weight: 750;
+}
+
+.stTabs [aria-selected="true"] {
+    background: #fff;
+    color: #2058c8;
+    box-shadow: 0 4px 12px rgba(23,48,95,.09);
+}
+
+/* Progress */
+.stProgress > div > div > div > div {
+    border-radius: 999px;
+    background: linear-gradient(90deg, #1d4ed8, #19a7dc);
+}
+
+/* Alerts / messages */
+div[data-testid="stAlert"] {
+    border-radius: 13px;
+    box-shadow: 0 5px 16px rgba(23,48,95,.045);
+}
+
+/* Statistics page */
+.main [data-testid="stSelectbox"] {
+    max-width: 480px;
+}
+
+/* Hide Streamlit chrome */
+#MainMenu { visibility: hidden; }
+header { visibility: hidden; }
+footer { visibility: hidden; }
+
+@media (max-width: 900px) {
+    .main .block-container { padding: 1rem; }
+    .hero { margin: -1rem -1rem 20px; }
+    .hero-brand, .brand { font-size: 38px; }
+    .admin-title { font-size: 27px; }
+    .welcome-title { font-size: 27px; }
 }
 
 </style>
@@ -1569,56 +2057,294 @@ def admin_all_courses():
 # ADMIN STATISTICS
 # ==================================================
 
+def _safe_pct(numerator, denominator):
+    """Return a percentage without raising a division-by-zero error."""
+    return round((float(numerator) / float(denominator)) * 100, 1) if denominator else 0.0
+
+
+def _admin_student_attendance_data():
+    """Build attendance totals for every student."""
+    attendance = lms.read_sheet("Attendance")
+    users = lms.read_sheet("Users")
+    if attendance.empty:
+        return pd.DataFrame(columns=["StudentID", "Name", "Present", "Absent"])
+    attendance["Status"] = attendance["Status"].astype(str).str.title()
+    grouped = attendance.groupby(["StudentID", "Status"]).size().unstack(fill_value=0).reset_index()
+    for col in ["Present", "Absent"]:
+        if col not in grouped.columns:
+            grouped[col] = 0
+    if not users.empty and "ID" in users.columns:
+        names = users[["ID", "Name"]].copy()
+        names["ID"] = names["ID"].astype(str)
+        grouped["StudentID"] = grouped["StudentID"].astype(str)
+        grouped = grouped.merge(names, left_on="StudentID", right_on="ID", how="left")
+        grouped["Name"] = grouped["Name"].fillna(grouped["StudentID"])
+        grouped.drop(columns=["ID"], inplace=True, errors="ignore")
+    else:
+        grouped["Name"] = grouped["StudentID"]
+    return grouped[["StudentID", "Name", "Present", "Absent"]]
+
+
+def _admin_exam_data():
+    """Join exam results to exams so course-level analytics can be calculated."""
+    results = lms.read_sheet("ExamResults")
+    exams = lms.read_sheet("Exams")
+    if results.empty or exams.empty:
+        return pd.DataFrame()
+    return results.merge(exams[["ExamID", "CourseID", "Title"]], on="ExamID", how="left")
+
+
+def _admin_assignment_data():
+    """Join assignment scores to assignments for course analytics."""
+    scores = lms.read_sheet("AssignmentScores")
+    assignments = lms.read_sheet("Assignments")
+    if scores.empty or assignments.empty:
+        return pd.DataFrame()
+    return scores.merge(assignments[["AssignmentID", "CourseID", "Title", "TotalMarks"]], on="AssignmentID", how="left")
+
+
+def _overall_platform_metrics():
+    """Return high-level student, instructor and learning statistics."""
+    users = lms.read_sheet("Users")
+    courses = lms.read_sheet("Courses")
+    enrollments = lms.read_sheet("Enrollments")
+    attendance = lms.read_sheet("Attendance")
+    results = lms.read_sheet("ExamResults")
+    completions = lms.read_sheet("CourseCompletions")
+
+    students = users[users["Role"].astype(str).str.lower() == "student"] if not users.empty and "Role" in users.columns else pd.DataFrame()
+    instructors = users[users["Role"].astype(str).str.lower() == "instructor"] if not users.empty and "Role" in users.columns else pd.DataFrame()
+    assigned = enrollments[enrollments["Status"].astype(str).str.lower() == "assigned"] if not enrollments.empty and "Status" in enrollments.columns else pd.DataFrame()
+    attendance_pct = _safe_pct(
+        len(attendance[attendance["Status"].astype(str).str.lower() == "present"]) if not attendance.empty else 0,
+        len(attendance)
+    )
+    exam_pct = _safe_pct(results["Marks"].sum() if not results.empty else 0, results["TotalMarks"].sum() if not results.empty else 0)
+
+    return {
+        "students": len(students),
+        "instructors": len(instructors),
+        "courses": len(courses),
+        "assigned": len(assigned),
+        "attendance": attendance_pct,
+        "exam": exam_pct,
+        "completed": len(completions),
+    }
+
+
+def _course_statistics():
+    """Return module, exam and assignment counts for each course."""
+    courses = lms.read_sheet("Courses")
+    modules = lms.read_sheet("Modules")
+    exams = lms.read_sheet("Exams")
+    assignments = lms.read_sheet("Assignments")
+    if courses.empty:
+        return pd.DataFrame(columns=["Course", "Modules", "Exams", "Assignments"])
+    rows = []
+    for _, course in courses.iterrows():
+        cid = str(course["CourseID"])
+        rows.append({
+            "Course": str(course["Title"]),
+            "Modules": int((modules["CourseID"].astype(str) == cid).sum()) if not modules.empty else 0,
+            "Exams": int((exams["CourseID"].astype(str) == cid).sum()) if not exams.empty else 0,
+            "Assignments": int((assignments["CourseID"].astype(str) == cid).sum()) if not assignments.empty else 0,
+        })
+    return pd.DataFrame(rows)
+
+
+def _student_performance_data(student_id):
+    """Build a dated exam-performance series for one student."""
+    results = lms.get_exam_results(student_id)
+    if results.empty:
+        return pd.DataFrame(columns=["Date", "Percentage"])
+    data = results.copy()
+    data["Percentage"] = pd.to_numeric(data["Marks"], errors="coerce") / pd.to_numeric(data["TotalMarks"], errors="coerce") * 100
+    data["Percentage"] = data["Percentage"].fillna(0).round(1)
+    data["Date"] = pd.to_datetime(data["Date"], errors="coerce")
+    data = data.dropna(subset=["Date"]).sort_values("Date")
+    data["Attempt"] = range(1, len(data) + 1)
+    return data[["Attempt", "Date", "Percentage"]]
+
+
 def admin_statistics():
+    """Display platform analytics with a simple visualization selector."""
+    st.markdown("## 📊 Platform Statistics")
+    st.caption("Choose an area below. LearnHub uses the most suitable chart for each type of data.")
 
-    st.markdown(
-        "## Platform Statistics"
+    metrics = _overall_platform_metrics()
+
+    c1, c2, c3, c4, c5, c6 = st.columns(6)
+    c1.metric("👨‍🎓 Students", metrics["students"])
+    c2.metric("👨‍🏫 Instructors", metrics["instructors"])
+    c3.metric("📚 Courses", metrics["courses"])
+    c4.metric("📝 Enrollments", metrics["assigned"])
+    c5.metric("📅 Attendance", f'{metrics["attendance"]}%')
+    c6.metric("🏆 Completed", metrics["completed"])
+
+    import matplotlib.pyplot as plt
+
+    users = lms.read_sheet("Users")
+    students = users[users["Role"].astype(str).str.lower() == "student"].copy() if not users.empty and "Role" in users.columns else pd.DataFrame()
+    instructors = users[users["Role"].astype(str).str.lower() == "instructor"].copy() if not users.empty and "Role" in users.columns else pd.DataFrame()
+    attendance = _admin_student_attendance_data()
+    exam_results = _admin_exam_data()
+    course_data = _course_statistics()
+
+    view = st.selectbox(
+        "📌 Select Statistics",
+        [
+            "Overview",
+            "Attendance",
+            "Student Exam Performance",
+            "Exam Performance Trend",
+            "Course Statistics",
+            "Instructor Workload",
+        ],
+        key="admin_statistics_view",
     )
 
-    stats = lms.get_statistics()
+    def chart_title(ax, title):
+        ax.set_title(title, fontsize=15, fontweight="bold", pad=14, color="#172554")
+        ax.spines["top"].set_visible(False)
+        ax.spines["right"].set_visible(False)
+        ax.grid(axis="y", alpha=.16, linestyle="--")
 
-    c1, c2, c3, c4 = st.columns(4)
+    if view == "Overview":
+        st.markdown("### 🌐 Platform Overview")
+        overview = pd.DataFrame({
+            "Metric": ["Students", "Instructors", "Courses", "Assigned Enrollments", "Attendance %", "Exam Performance %", "Completed Courses"],
+            "Value": [metrics["students"], metrics["instructors"], metrics["courses"], metrics["assigned"], metrics["attendance"], metrics["exam"], metrics["completed"]]
+        })
+        left, right = st.columns([1.05, 1.95])
+        with left:
+            fig, ax = plt.subplots(figsize=(5.2, 4.8))
+            vals = [metrics["students"], metrics["instructors"], metrics["courses"], metrics["completed"]]
+            labels = ["Students", "Instructors", "Courses", "Completed"]
+            ax.barh(labels[::-1], vals[::-1])
+            ax.set_xlabel("Count")
+            chart_title(ax, "Platform Counts")
+            st.pyplot(fig, use_container_width=True)
+            plt.close(fig)
+        with right:
+            st.dataframe(overview, use_container_width=True, hide_index=True)
 
-    c1.metric(
-        "Students",
-        stats["students"]
-    )
+    elif view == "Attendance":
+        st.markdown("### 📅 Attendance Overview")
+        if attendance.empty:
+            st.info("Attendance charts will appear after attendance is recorded.")
+        else:
+            totals = pd.Series({"Present": int(attendance["Present"].sum()), "Absent": int(attendance["Absent"].sum())})
+            totals = totals[totals > 0]
+            if totals.empty:
+                st.info("No attendance values are available yet.")
+            else:
+                left, right = st.columns([1, 1.35])
+                with left:
+                    fig, ax = plt.subplots(figsize=(5, 4.5))
+                    ax.pie(totals.values, labels=totals.index, autopct="%1.1f%%", startangle=90, wedgeprops={"width": .42, "edgecolor": "white"})
+                    ax.set_title("Overall Attendance", fontsize=15, fontweight="bold", color="#172554")
+                    st.pyplot(fig, use_container_width=True)
+                    plt.close(fig)
+                with right:
+                    attendance_view = attendance.copy()
+                    attendance_view["Attendance %"] = (attendance_view["Present"] / (attendance_view["Present"] + attendance_view["Absent"]).replace(0, np.nan) * 100).fillna(0).round(1)
+                    st.dataframe(attendance_view.sort_values("Attendance %", ascending=False), use_container_width=True, hide_index=True)
 
-    c2.metric(
-        "Courses",
-        stats["courses"]
-    )
+    elif view == "Student Exam Performance":
+        st.markdown("### 📝 Student Exam Performance")
+        if exam_results.empty:
+            st.info("Exam performance charts will appear after students complete exams.")
+        else:
+            exam_results = exam_results.copy()
+            exam_results["Marks"] = pd.to_numeric(exam_results["Marks"], errors="coerce").fillna(0)
+            exam_results["TotalMarks"] = pd.to_numeric(exam_results["TotalMarks"], errors="coerce").fillna(0)
+            exam_results["Percentage"] = np.where(exam_results["TotalMarks"] > 0, exam_results["Marks"] / exam_results["TotalMarks"] * 100, 0)
+            if not students.empty:
+                name_map = students.set_index(students["ID"].astype(str))["Name"].to_dict()
+                exam_results["Student"] = exam_results["StudentID"].astype(str).map(name_map).fillna(exam_results["StudentID"].astype(str))
+            else:
+                exam_results["Student"] = exam_results["StudentID"].astype(str)
+            student_avg = exam_results.groupby("Student", as_index=False)["Percentage"].mean().sort_values("Percentage", ascending=False)
+            if student_avg.empty:
+                st.info("No student exam performance data is available.")
+            else:
+                fig, ax = plt.subplots(figsize=(10.5, 5))
+                bars = ax.bar(student_avg["Student"].astype(str), student_avg["Percentage"])
+                ax.set_ylabel("Average Score (%)")
+                ax.set_ylim(0, 100)
+                ax.tick_params(axis="x", rotation=25)
+                chart_title(ax, "Average Exam Performance by Student")
+                for bar, value in zip(bars, student_avg["Percentage"]):
+                    ax.text(bar.get_x() + bar.get_width()/2, value + 2, f"{value:.0f}%", ha="center", fontsize=9, fontweight="bold")
+                st.pyplot(fig, use_container_width=True)
+                plt.close(fig)
+                st.dataframe(student_avg.round(1), use_container_width=True, hide_index=True)
 
-    c3.metric(
-        "Enrollments",
-        stats["enrollments"]
-    )
+    elif view == "Exam Performance Trend":
+        st.markdown("### 📈 Exam Performance Trend")
+        if exam_results.empty:
+            st.info("The performance trend will appear after exam results are recorded.")
+        else:
+            trend = exam_results.copy()
+            trend["Marks"] = pd.to_numeric(trend["Marks"], errors="coerce").fillna(0)
+            trend["TotalMarks"] = pd.to_numeric(trend["TotalMarks"], errors="coerce").fillna(0)
+            trend["Percentage"] = np.where(trend["TotalMarks"] > 0, trend["Marks"] / trend["TotalMarks"] * 100, 0)
+            trend["Date"] = pd.to_datetime(trend["Date"], errors="coerce") if "Date" in trend.columns else pd.NaT
+            trend = trend.dropna(subset=["Date"]).sort_values("Date")
+            if trend.empty:
+                st.info("Exam dates are not available for the trend chart.")
+            else:
+                trend = trend.groupby("Date", as_index=False)["Percentage"].mean()
+                fig, ax = plt.subplots(figsize=(10.5, 5))
+                ax.plot(trend["Date"], trend["Percentage"], marker="o", linewidth=2.8, markersize=7)
+                ax.fill_between(trend["Date"], trend["Percentage"], alpha=.10)
+                ax.set_ylabel("Average Score (%)")
+                ax.set_ylim(0, 100)
+                chart_title(ax, "Average Exam Performance Over Time")
+                fig.autofmt_xdate()
+                st.pyplot(fig, use_container_width=True)
+                plt.close(fig)
 
-    c4.metric(
-        "Attendance",
-        str(
-            stats["attendance"]
-        ) + "%"
-    )
+    elif view == "Course Statistics":
+        st.markdown("### 📚 Course Statistics")
+        if course_data.empty:
+            st.info("Course statistics will appear after courses are created.")
+        else:
+            fig, ax = plt.subplots(figsize=(11, 5.2))
+            x = np.arange(len(course_data))
+            width = .24
+            ax.bar(x - width, course_data["Modules"], width, label="Modules")
+            ax.bar(x, course_data["Exams"], width, label="Exams")
+            ax.bar(x + width, course_data["Assignments"], width, label="Assignments")
+            ax.set_xticks(x)
+            ax.set_xticklabels(course_data["Course"].astype(str), rotation=25, ha="right")
+            ax.set_ylabel("Number of Items")
+            chart_title(ax, "Modules, Exams and Assignments by Course")
+            ax.legend(frameon=False, ncols=3)
+            st.pyplot(fig, use_container_width=True)
+            plt.close(fig)
+            st.dataframe(course_data, use_container_width=True, hide_index=True)
 
-    st.markdown("---")
-
-    chart_data = lms.attendance_chart_data()
-
-    if (
-        chart_data["Count"].sum()
-        > 0
-    ):
-
-        st.subheader(
-            "Attendance Distribution"
-        )
-
-        st.pyplot(
-            create_pie_chart(
-                chart_data
-            )
-        )
+    elif view == "Instructor Workload":
+        st.markdown("### 👨‍🏫 Instructor Course Workload")
+        courses = lms.read_sheet("Courses")
+        workload = pd.DataFrame()
+        if not instructors.empty and not courses.empty and "InstructorID" in courses.columns:
+            course_counts = courses.groupby(courses["InstructorID"].astype(str)).size().reset_index(name="Courses")
+            name_map = instructors.set_index(instructors["ID"].astype(str))["Name"].to_dict()
+            course_counts["Instructor"] = course_counts["InstructorID"].astype(str).map(name_map).fillna(course_counts["InstructorID"].astype(str))
+            workload = course_counts[["Instructor", "Courses"]].sort_values("Courses", ascending=False)
+        if workload.empty:
+            st.info("Instructor workload will appear after courses are assigned to instructors.")
+        else:
+            fig, ax = plt.subplots(figsize=(10.5, 5))
+            ax.bar(workload["Instructor"].astype(str), workload["Courses"])
+            ax.set_ylabel("Number of Courses")
+            ax.tick_params(axis="x", rotation=25)
+            chart_title(ax, "Courses Assigned to Each Instructor")
+            st.pyplot(fig, use_container_width=True)
+            plt.close(fig)
+            st.dataframe(workload, use_container_width=True, hide_index=True)
 
 
 # ==================================================
@@ -2629,75 +3355,71 @@ def instructor_attendance():
 # ==================================================
 
 def instructor_students():
-
+    """Show assigned students and let the instructor certify course completion."""
     st.markdown("## 👥 My Students")
-
     courses = get_my_courses()
-
     if courses.empty:
         st.info("No courses are assigned to you.")
         return
 
     enrollments = lms.read_sheet("Enrollments")
-
     if enrollments.empty:
         st.info("No students have enrolled yet.")
         return
 
     my = enrollments[
-        enrollments["CourseID"].astype(str).isin(
-            courses["CourseID"].astype(str).tolist()
-        )
+        enrollments["CourseID"].astype(str).isin(courses["CourseID"].astype(str).tolist())
     ]
-
-    my = my[
-        my["Status"].astype(str) == "Assigned"
-    ]
-
+    my = my[my["Status"].astype(str).str.lower() == "assigned"]
     if my.empty:
         st.info("No students are assigned to your courses yet.")
         return
 
     users = lms.read_sheet("Users")
+    completions = lms.get_course_completions()
     result = []
-
     for _, row in my.iterrows():
-        student = users[
-            users["ID"].astype(str) == str(row["StudentID"])
-        ] if not users.empty else pd.DataFrame()
-
+        student = users[users["ID"].astype(str) == str(row["StudentID"])] if not users.empty else pd.DataFrame()
         name = str(row["StudentID"])
         email = ""
-
         if not student.empty:
             name = str(student.iloc[0]["Name"])
-            if "Email" in student.columns:
-                email = str(student.iloc[0]["Email"])
-
+            email = str(student.iloc[0].get("Email", ""))
         course_name = str(row["CourseID"])
-        found = courses[
-            courses["CourseID"].astype(str) == str(row["CourseID"])
-        ]
+        found = courses[courses["CourseID"].astype(str) == str(row["CourseID"])]
         if not found.empty:
             course_name = str(found.iloc[0]["Title"])
+        completed = False
+        if not completions.empty:
+            completed = not completions[(completions["StudentID"].astype(str) == str(row["StudentID"])) & (completions["CourseID"].astype(str) == str(row["CourseID"]))].empty
+        result.append({
+            "Student ID": str(row["StudentID"]), "Name": name, "Email": email,
+            "Course": course_name, "Academic %": row["Percentage"],
+            "Status": row["Status"], "Course Completed": "Yes" if completed else "No"
+        })
 
-        result.append(
-            {
-                "Student ID": str(row["StudentID"]),
-                "Name": name,
-                "Email": email,
-                "Course": course_name,
-                "Academic %": row["Percentage"],
-                "Status": row["Status"]
-            }
-        )
-
-    if result:
-        st.dataframe(
-            pd.DataFrame(result),
-            use_container_width=True,
-            hide_index=True
-        )
+    display = pd.DataFrame(result)
+    st.dataframe(display, use_container_width=True, hide_index=True)
+    st.markdown("---")
+    st.subheader("🏆 Mark Course Completed")
+    options = {}
+    for _, row in my.iterrows():
+        student = users[users["ID"].astype(str) == str(row["StudentID"])] if not users.empty else pd.DataFrame()
+        name = str(student.iloc[0]["Name"]) if not student.empty else str(row["StudentID"])
+        found = courses[courses["CourseID"].astype(str) == str(row["CourseID"])]
+        title = str(found.iloc[0]["Title"]) if not found.empty else str(row["CourseID"])
+        label = f"{name} — {title} ({row['StudentID']})"
+        options[label] = (str(row["StudentID"]), str(row["CourseID"]))
+    selected = st.selectbox("Select Student and Course", list(options.keys()), key="instructor_completion_select")
+    student_id, course_id = options[selected]
+    existing = lms.get_course_completions(student_id, course_id)
+    if not existing.empty:
+        st.success("✅ This course is already marked completed and the certificate is available to the student.")
+    else:
+        if st.button("🏆 Mark Course Completed", use_container_width=True, key="mark_course_completed"):
+            certificate_id = lms.mark_course_completed(student_id, course_id, st.session_state.user_id)
+            st.success(f"Course completed successfully. Certificate ID: {certificate_id}")
+            st.rerun()
 
 
 # ==================================================
@@ -2705,42 +3427,64 @@ def instructor_students():
 # ==================================================
 
 def instructor_results():
-
-    st.markdown("## 📊 Student Results")
-
+    """Show instructor course results plus platform and course analytics."""
+    st.markdown("## 📊 Student Results & Analytics")
     courses = get_my_courses()
     course_ids = [] if courses.empty else courses["CourseID"].astype(str).tolist()
 
-    results = lms.get_exam_results()
-
-    if not results.empty and course_ids and "CourseID" in results.columns:
-        results = results[
-            results["CourseID"].astype(str).isin(course_ids)
-        ]
-
-    if results.empty:
+    exam_results = _admin_exam_data()
+    if not exam_results.empty and course_ids:
+        exam_results = exam_results[exam_results["CourseID"].astype(str).isin(course_ids)]
+    if exam_results.empty:
         st.info("No exam results are available for your courses.")
     else:
-        st.dataframe(
-            results,
-            use_container_width=True,
-            hide_index=True
-        )
+        st.dataframe(exam_results, use_container_width=True, hide_index=True)
 
-    scores = lms.read_sheet("AssignmentScores")
-
-    if not scores.empty and course_ids and "CourseID" in scores.columns:
-        scores = scores[
-            scores["CourseID"].astype(str).isin(course_ids)
-        ]
-
+    scores = _admin_assignment_data()
+    if not scores.empty and course_ids:
+        scores = scores[scores["CourseID"].astype(str).isin(course_ids)]
     if not scores.empty:
         st.subheader("Assignment Scores")
-        st.dataframe(
-            scores,
-            use_container_width=True,
-            hide_index=True
-        )
+        st.dataframe(scores, use_container_width=True, hide_index=True)
+
+    st.markdown("---")
+    st.subheader("🌐 Overall Platform Statistics")
+    metrics = _overall_platform_metrics()
+    c1, c2, c3, c4, c5 = st.columns(5)
+    c1.metric("All Students", metrics["students"])
+    c2.metric("All Instructors", metrics["instructors"])
+    c3.metric("All Courses", metrics["courses"])
+    c4.metric("Platform Attendance", f'{metrics["attendance"]}%')
+    c5.metric("Completed Courses", metrics["completed"])
+
+    st.subheader("📚 My Course Statistics")
+    if courses.empty:
+        st.info("No courses assigned.")
+    else:
+        course_stats = _course_statistics()
+        course_stats = course_stats[course_stats["Course"].isin(courses["Title"].astype(str))]
+        st.dataframe(course_stats, use_container_width=True, hide_index=True)
+
+        import matplotlib.pyplot as plt
+        if not course_stats.empty:
+            fig, ax = plt.subplots(figsize=(10, 4.5))
+            x = np.arange(len(course_stats)); width = .24
+            ax.bar(x - width, course_stats["Modules"], width, label="Modules")
+            ax.bar(x, course_stats["Exams"], width, label="Exams")
+            ax.bar(x + width, course_stats["Assignments"], width, label="Assignments")
+            ax.set_xticks(x); ax.set_xticklabels(course_stats["Course"].astype(str), rotation=30, ha="right")
+            ax.set_ylabel("Count"); ax.set_title("My Course Content Statistics"); ax.legend()
+            st.pyplot(fig)
+
+    st.subheader("📈 Student Performance Overview")
+    if not exam_results.empty:
+        exam_results["Percentage"] = (pd.to_numeric(exam_results["Marks"], errors="coerce") / pd.to_numeric(exam_results["TotalMarks"], errors="coerce") * 100).fillna(0)
+        overview = exam_results.groupby("StudentID", as_index=False)["Percentage"].mean().sort_values("Percentage", ascending=False)
+        if not overview.empty:
+            fig, ax = plt.subplots(figsize=(9, 4.5))
+            ax.bar(overview["StudentID"].astype(str), overview["Percentage"])
+            ax.set_ylim(0, 100); ax.set_ylabel("Average Exam Performance (%)"); ax.set_title("Students' Overall Exam Performance")
+            ax.tick_params(axis="x", rotation=30); st.pyplot(fig)
 
 
 # ==================================================
@@ -2912,6 +3656,18 @@ def student_home():
         "Exams Completed",
         len(results)
     )
+
+    completions = lms.get_course_completions(st.session_state.user_id)
+    if not completions.empty:
+        st.markdown("---")
+        st.subheader("🏆 Completed Courses & Certificates")
+        courses = lms.get_courses()
+        for _, completion in completions.iterrows():
+            title = str(completion["CourseID"])
+            if not courses.empty:
+                found = courses[courses["CourseID"].astype(str) == str(completion["CourseID"])]
+                if not found.empty: title = str(found.iloc[0]["Title"])
+            st.success(f"🎓 {title} — Completed on {completion['CompletedDate']} — Certificate {completion['CertificateID']}")
 
 
 # ==================================================
@@ -4057,86 +4813,58 @@ def student_results():
 # CERTIFICATE
 # ==================================================
 
+def _create_certificate_pdf(student_name, course_title, certificate_id, completed_date, instructor_name):
+    """Create a printable LearnHub course-completion certificate."""
+    from io import BytesIO
+    from reportlab.lib.pagesizes import landscape, A4
+    from reportlab.lib import colors
+    from reportlab.pdfgen import canvas
+    buffer = BytesIO()
+    width, height = landscape(A4)
+    pdf = canvas.Canvas(buffer, pagesize=(width, height))
+    pdf.setTitle("LearnHub Certificate")
+    pdf.setStrokeColor(colors.HexColor("#2563EB")); pdf.setLineWidth(6); pdf.rect(24, 24, width-48, height-48)
+    pdf.setStrokeColor(colors.HexColor("#93C5FD")); pdf.setLineWidth(2); pdf.rect(40, 40, width-80, height-80)
+    pdf.setFillColor(colors.HexColor("#0F172A")); pdf.setFont("Helvetica-Bold", 30); pdf.drawCentredString(width/2, height-95, "LEARNHUB")
+    pdf.setFillColor(colors.HexColor("#2563EB")); pdf.setFont("Helvetica-Bold", 22); pdf.drawCentredString(width/2, height-135, "CERTIFICATE OF COMPLETION")
+    pdf.setFillColor(colors.HexColor("#475569")); pdf.setFont("Helvetica", 13); pdf.drawCentredString(width/2, height-175, "This certificate is proudly presented to")
+    pdf.setFillColor(colors.HexColor("#111827")); pdf.setFont("Helvetica-Bold", 30); pdf.drawCentredString(width/2, height-225, str(student_name))
+    pdf.setFillColor(colors.HexColor("#475569")); pdf.setFont("Helvetica", 14); pdf.drawCentredString(width/2, height-265, "for successfully completing the course")
+    pdf.setFillColor(colors.HexColor("#1D4ED8")); pdf.setFont("Helvetica-Bold", 24); pdf.drawCentredString(width/2, height-305, str(course_title))
+    pdf.setFillColor(colors.HexColor("#475569")); pdf.setFont("Helvetica", 11); pdf.drawCentredString(width/2, 105, f"Certificate ID: {certificate_id}")
+    pdf.drawCentredString(width/2, 87, f"Completed: {completed_date}   |   Certified by: {instructor_name}")
+    pdf.save(); buffer.seek(0); return buffer.getvalue()
+
+
 def student_certificate():
-
-    st.markdown(
-        "## Certificate Eligibility"
-    )
-
-    attendance = lms.get_attendance(
-        st.session_state.user_id
-    )
-
-    results = lms.get_exam_results(
-        st.session_state.user_id
-    )
-
-    attendance_percentage = 0
-    exam_percentage = 0
-
-    if not attendance.empty:
-
-        attendance_percentage = (
-            len(
-                attendance[
-                    attendance["Status"]
-                    == "Present"
-                ]
-            )
-            /
-            len(attendance)
-        ) * 100
-
-    if not results.empty:
-
-        marks = results["Marks"].sum()
-
-        total = results[
-            "TotalMarks"
-        ].sum()
-
-        if total > 0:
-
-            exam_percentage = (
-                marks / total
-            ) * 100
-
-    st.metric(
-        "Attendance",
-        str(
-            round(
-                attendance_percentage,
-                2
-            )
+    """Display instructor-approved completions and downloadable certificates."""
+    st.markdown("## 🏆 My Certificates")
+    completions = lms.get_course_completions(st.session_state.user_id)
+    courses = lms.get_courses()
+    users = lms.read_sheet("Users")
+    if completions.empty:
+        st.info("Your instructor has not marked any course as completed yet. Your certificate will appear here after completion is approved by the instructor.")
+        return
+    for _, row in completions.iterrows():
+        course_title = str(row["CourseID"])
+        if not courses.empty:
+            found = courses[courses["CourseID"].astype(str) == str(row["CourseID"])]
+            if not found.empty: course_title = str(found.iloc[0]["Title"])
+        instructor_name = str(row.get("CompletedBy", "Instructor"))
+        if not users.empty and "ID" in users.columns:
+            instructor = users[users["ID"].astype(str) == str(row.get("CompletedBy", ""))]
+            if not instructor.empty: instructor_name = str(instructor.iloc[0].get("Name", instructor_name))
+        card_html = (
+            '<div class="card" style="border-left:6px solid #2563EB;">'
+            f'<h3>🎓 {course_title}</h3>'
+            f'<p><b>Student:</b> {st.session_state.user_name}</p>'
+            f'<p><b>Certificate ID:</b> {row["CertificateID"]}</p>'
+            f'<p><b>Completed:</b> {row["CompletedDate"]}</p>'
+            f'<p><b>Certified by:</b> {instructor_name}</p></div>'
         )
-        + "%"
-    )
-
-    st.metric(
-        "Exam Performance",
-        str(
-            round(
-                exam_percentage,
-                2
-            )
-        )
-        + "%"
-    )
-
-    if (
-        attendance_percentage >= 75
-        and exam_percentage >= 50
-    ):
-
-        st.success(
-            "🎓 Congratulations! You are eligible for a certificate."
-        )
-
-    else:
-
-        st.warning(
-            "Certificate eligibility requirements are not completed yet."
-        )
+        st.markdown(card_html, unsafe_allow_html=True)
+        pdf_bytes = _create_certificate_pdf(st.session_state.user_name, course_title, row["CertificateID"], row["CompletedDate"], instructor_name)
+        st.download_button("📄 Download Certificate", data=pdf_bytes, file_name=f"LearnHub_Certificate_{row['CertificateID']}.pdf", mime="application/pdf", key=f"certificate_download_{row['CertificateID']}", use_container_width=True)
 
 
 # ==================================================

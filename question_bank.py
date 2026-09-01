@@ -1,49 +1,98 @@
-QUESTION_BANK={
-'Python':[
-{'q':'Which data type is immutable?','options':['List','Set','Dictionary','Tuple'],'answer':'D'},
-{'q':'Which module is used for regular expressions?','options':['regex','re','regexp','pattern'],'answer':'B'},
-{'q':'Which symbol is used for comments?','options':['//','/*','#','--'],'answer':'C'},
-{'q':'Which keyword defines a function?','options':['func','define','def','function'],'answer':'C'},
-{'q':'Which collection stores key-value pairs?','options':['List','Tuple','Dictionary','Set'],'answer':'C'},
-{'q':'What type does input() return?','options':['int','str','float','bool'],'answer':'B'},
-{'q':'Which operator is floor division?','options':['/','//','%','**'],'answer':'B'},
-{'q':'Which keyword handles exceptions?','options':['catch','try','except','error'],'answer':'C'},
-{'q':'Which keyword creates a class?','options':['object','class','struct','new'],'answer':'B'},
-{'q':'What does len() return?','options':['Index','Length','Type','Memory'],'answer':'B'},
-{'q':'Which is a Boolean value?','options':['true','True','TRUE','1'],'answer':'B'},
-{'q':'Which converts string to integer?','options':['str()','float()','int()','number()'],'answer':'C'}],
-'Aptitude':[
-{'q':'20% of x is 50. x=?','options':['200','250','300','150'],'answer':'B'},
-{'q':'Average of 10,20,30?','options':['15','20','25','30'],'answer':'B'},
-{'q':'60 km in 1 hour means speed?','options':['30','60','90','120'],'answer':'B'},
-{'q':'SI on 1000 at 10% for 2 years?','options':['100','150','200','250'],'answer':'C'},
-{'q':'LCM of 4 and 6?','options':['8','10','12','24'],'answer':'C'},
-{'q':'Ratio 2:3, total 25. First part?','options':['8','10','12','15'],'answer':'B'},
-{'q':'15 is what percent of 60?','options':['20%','25%','30%','35%'],'answer':'B'},
-{'q':'x+5=12. x=?','options':['5','6','7','8'],'answer':'C'},
-{'q':'A number divisible by 2 is?','options':['Odd','Even','Prime','Composite'],'answer':'B'},
-{'q':'Probability of head on fair coin?','options':['1/4','1/2','1','2'],'answer':'B'},
-{'q':'25 x 4?','options':['50','75','100','125'],'answer':'C'},
-{'q':'5 pens cost 100. One costs?','options':['10','15','20','25'],'answer':'C'}],
-'Java':[
-{'q':'Keyword to create class?','options':['class','Class','struct','define'],'answer':'A'},
-{'q':'Java program starts with?','options':['start()','main()','run()','init()'],'answer':'B'},
-{'q':'Java source extension?','options':['.py','.js','.java','.class'],'answer':'C'},
-{'q':'Keyword for inheritance?','options':['inherit','extends','implements','super'],'answer':'B'},
-{'q':'Not a primitive type?','options':['int','boolean','String','double'],'answer':'C'},
-{'q':'Keyword preventing inheritance?','options':['static','final','private','stop'],'answer':'B'},
-{'q':'Common interface for threads?','options':['Runnable','Threadable','Run','Process'],'answer':'A'},
-{'q':'Exception handling keyword?','options':['catch','except','error','handle'],'answer':'A'},
-{'q':'JVM means?','options':['Java Virtual Machine','Java Variable Method','Java Visual Model','Joint VM'],'answer':'A'},
-{'q':'Collection that disallows duplicates?','options':['List','Set','Map','Array'],'answer':'B'}],
-'SQL':[
-{'q':'Which command removes records?','options':['REMOVE','DELETE','DROP','CLEAR'],'answer':'B'},
-{'q':'Which function counts rows?','options':['TOTAL()','COUNT()','NUMBER()','ROWS()'],'answer':'B'},
-{'q':'Which key uniquely identifies a row?','options':['Foreign Key','Primary Key','Unique Key','Main Key'],'answer':'B'},
-{'q':'Which clause filters rows?','options':['WHERE','FILTER','HAVING','CHECK'],'answer':'A'},
-{'q':'Which command modifies existing data?','options':['CHANGE','MODIFY','UPDATE','EDIT'],'answer':'C'},
-{'q':'Which command adds a record?','options':['ADD','INSERT','CREATE','UPDATE'],'answer':'B'},
-{'q':'Which command creates a table?','options':['MAKE','CREATE','BUILD','NEW'],'answer':'B'},
-{'q':'Which clause sorts results?','options':['SORT BY','ORDER BY','GROUP BY','ARRANGE'],'answer':'B'},
-{'q':'Which clause groups rows?','options':['GROUP BY','ORDER BY','JOIN','COLLECT'],'answer':'A'},
-{'q':'Which retrieves data?','options':['GET','SELECT','FETCH','READ'],'answer':'B'}]}
+# ==========================================================
+# QUESTION_BANK.PY
+# ==========================================================
+
+
+QUESTION_BANK = [
+
+    {
+        "question": "Which keyword is used to define a function in Python?",
+        "a": "function",
+        "b": "def",
+        "c": "func",
+        "d": "define",
+        "answer": "B"
+    },
+
+    {
+        "question": "Which data type stores True or False?",
+        "a": "int",
+        "b": "float",
+        "c": "bool",
+        "d": "string",
+        "answer": "C"
+    },
+
+    {
+        "question": "Which symbol is used for comments in Python?",
+        "a": "//",
+        "b": "#",
+        "c": "/*",
+        "d": "--",
+        "answer": "B"
+    },
+
+    {
+        "question": "Which function is used to display output?",
+        "a": "display()",
+        "b": "show()",
+        "c": "print()",
+        "d": "output()",
+        "answer": "C"
+    },
+
+    {
+        "question": "Which one is a Python collection?",
+        "a": "list",
+        "b": "number",
+        "c": "character",
+        "d": "integer",
+        "answer": "A"
+    },
+
+    {
+        "question": "Which keyword is used to create a class?",
+        "a": "class",
+        "b": "Class",
+        "c": "object",
+        "d": "new",
+        "answer": "A"
+    },
+
+    {
+        "question": "Which SQL command is used to retrieve data?",
+        "a": "GET",
+        "b": "SELECT",
+        "c": "READ",
+        "d": "FETCH",
+        "answer": "B"
+    },
+
+    {
+        "question": "Which SQL clause is used to filter records?",
+        "a": "FILTER",
+        "b": "WHERE",
+        "c": "CHECK",
+        "d": "SELECT",
+        "answer": "B"
+    },
+
+    {
+        "question": "What is 25 + 25?",
+        "a": "40",
+        "b": "45",
+        "c": "50",
+        "d": "55",
+        "answer": "C"
+    },
+
+    {
+        "question": "What is 10% of 200?",
+        "a": "10",
+        "b": "20",
+        "c": "30",
+        "d": "40",
+        "answer": "B"
+    }
+
+]

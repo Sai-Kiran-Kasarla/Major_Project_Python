@@ -1,3 +1,4 @@
+import streamlit as st
 import os
 import hashlib
 import random
@@ -13,13 +14,14 @@ class LMS:
 
     FILE_NAME = "lms_data.xlsx"
 
-    ADMIN_EMAIL = "ceosaikiran@gmail.com"
-    ADMIN_PASSWORD = "Admin@123"
+    ADMIN_EMAIL = st.secrets["ADMIN_EMAIL"]
+    ADMIN_PASSWORD = st.secrets["ADMIN_PASSWORD"]
 
     def __init__(self):
 
         self.create_database()
         self.ensure_module_link_column()
+        self.ensure_course_completion_sheet()
         self.remove_duplicate_enrollments()
 
     # ------------------------------------------------
@@ -129,6 +131,15 @@ class LMS:
                     "CourseID",
                     "ModuleID",
                     "Completed"
+                ],
+
+                "CourseCompletions": [
+                    "CompletionID",
+                    "StudentID",
+                    "CourseID",
+                    "CompletedBy",
+                    "CompletedDate",
+                    "CertificateID"
                 ]
             }
 
@@ -228,7 +239,8 @@ class LMS:
                 "Questions": ["QuestionID", "ExamID", "Question", "OptionA", "OptionB", "OptionC", "OptionD", "Answer"],
                 "ExamResults": ["ExamID", "StudentID", "Marks", "TotalMarks", "Date"],
                 "Attendance": ["AttendanceID", "CourseID", "StudentID", "Date", "Status"],
-                "Progress": ["StudentID", "CourseID", "ModuleID", "Completed"]
+                "Progress": ["StudentID", "CourseID", "ModuleID", "Completed"],
+                "CourseCompletions": ["CompletionID", "StudentID", "CourseID", "CompletedBy", "CompletedDate", "CertificateID"]
             }
 
             required = expected.get(sheet_name, [])
@@ -1216,6 +1228,48 @@ class LMS:
             ]
 
         return data
+
+    # ------------------------------------------------
+    # COURSE COMPLETION / CERTIFICATES
+    # ------------------------------------------------
+
+    def mark_course_completed(self, student_id, course_id, instructor_id):
+        """Mark a student's course as completed by an instructor."""
+        data = self.read_sheet("CourseCompletions")
+        if not data.empty:
+            existing = data[(data["StudentID"].astype(str) == str(student_id)) &
+                            (data["CourseID"].astype(str) == str(course_id))]
+            if not existing.empty:
+                return str(existing.iloc[0]["CertificateID"])
+
+        certificate_id = self.generate_id("CERT", "CourseCompletions", "CompletionID")
+        self.append_row("CourseCompletions", [
+            certificate_id, student_id, course_id, instructor_id,
+            datetime.now().strftime("%Y-%m-%d"), certificate_id
+        ])
+        return certificate_id
+
+    def get_course_completions(self, student_id=None, course_id=None):
+        """Return course completion records, optionally filtered."""
+        data = self.read_sheet("CourseCompletions")
+        if data.empty:
+            return data
+        if student_id is not None:
+            data = data[data["StudentID"].astype(str) == str(student_id)]
+        if course_id is not None:
+            data = data[data["CourseID"].astype(str) == str(course_id)]
+        return data
+
+    def ensure_course_completion_sheet(self):
+        """Create the course-completion sheet for existing databases."""
+        try:
+            workbook = load_workbook(self.FILE_NAME)
+            if "CourseCompletions" not in workbook.sheetnames:
+                sheet = workbook.create_sheet("CourseCompletions")
+                sheet.append(["CompletionID", "StudentID", "CourseID", "CompletedBy", "CompletedDate", "CertificateID"])
+                workbook.save(self.FILE_NAME)
+        except Exception as error:
+            print("Unable to create CourseCompletions sheet:", error)
 
     # ------------------------------------------------
     # PROGRESS

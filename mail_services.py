@@ -1,48 +1,52 @@
 import smtplib
 from email.message import EmailMessage
-
-SMTP_SERVER = "smtp.gmail.com"
-SMTP_PORT = 587
-
-SENDER_EMAIL = "ceosaikiran@gmail.com"
-SENDER_PASSWORD = "vuss pvuv totf jaob"
+import streamlit as st
 
 
-def send_otp(receiver_email, otp):
+SENDER_EMAIL = st.secrets["SENDER_EMAIL"]
+APP_PASSWORD = st.secrets["APP_PASSWORD"]
+
+
+def send_otp_email(receiver_email, otp):
+    """
+    Send an OTP email to the specified receiver.
+    """
     message = EmailMessage()
-    message["Subject"] = "LearnHub - OTP Verification"
+
+    message["Subject"] = "LearnHub OTP Verification"
     message["From"] = SENDER_EMAIL
     message["To"] = receiver_email
 
     message.set_content(
-        "Hello,\n\n"
-        "Your LearnHub verification OTP is: " + str(otp) + "\n\n"
-        "This OTP is for account verification/login.\n"
-        "Please do not share it with anyone.\n\n"
-        "Regards,\n"
-        "LearnHub\n"
-        "Learning Management System"
+        f"""
+Hello,
+
+Your LearnHub OTP is:
+
+{otp}
+
+Please use this OTP to complete your verification.
+
+Regards,
+LearnHub Team
+"""
     )
 
     try:
-        server = smtplib.SMTP(
-            SMTP_SERVER,
-            SMTP_PORT,
-            timeout=20
-        )
-        server.starttls()
-        server.login(
-            SENDER_EMAIL,
-            SENDER_PASSWORD
-        )
-        server.send_message(message)
-        server.quit()
+        with smtplib.SMTP("smtp.gmail.com", 587) as server:
+            server.starttls()
+            server.login(SENDER_EMAIL, APP_PASSWORD)
+            server.send_message(message)
+
         return True
 
-    except Exception as error:
-        print("SMTP Error:", error)
+    except Exception as e:
+        print(f"Email sending error: {e}")
         return False
 
 
-def send_otp_email(receiver_email, otp):
-    return send_otp(receiver_email, otp)
+def send_otp(receiver_email, otp):
+    """
+    Compatibility wrapper for existing code that uses send_otp.
+    """
+    return send_otp_email(receiver_email, otp)
