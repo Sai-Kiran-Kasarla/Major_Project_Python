@@ -925,6 +925,90 @@ footer { visibility: hidden; }
     .welcome-title { font-size: 27px; }
 }
 
+
+/* =========================================================
+   CONTAINER TEXT OVERFLOW FIX
+   Visual-only: prevents text from overflowing containers.
+   No application logic or functionality changed.
+   ========================================================= */
+.card, .admin-card, .profile-card, .admin-hero, .metric-card, .login-box, .welcome-bar {
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    overflow-wrap: anywhere;
+    word-break: normal;
+}
+.card *, .admin-card *, .profile-card *, .admin-hero *, .metric-card *, .login-box *, .welcome-bar * {
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-wrap: anywhere;
+    word-break: normal;
+}
+.card p, .card div, .card span, .card h1, .card h2, .card h3, .card h4,
+.admin-card p, .admin-card div, .admin-card span, .profile-card p,
+.profile-card h1, .profile-card h2, .profile-card h3, .admin-hero p, .admin-hero div,
+.admin-hero h1, .admin-hero h2 {
+    overflow-wrap: anywhere;
+    white-space: normal;
+}
+[data-testid="column"] { min-width: 0 !important; }
+[data-testid="stMetric"] {
+    min-width: 0 !important; max-width: 100%; overflow: hidden; box-sizing: border-box;
+}
+[data-testid="stMetricLabel"], [data-testid="stMetricValue"], [data-testid="stMetricDelta"] {
+    max-width: 100%; overflow-wrap: anywhere; white-space: normal !important;
+}
+.stButton > button, .stDownloadButton > button {
+    max-width: 100%; white-space: normal !important; overflow-wrap: anywhere;
+    word-break: normal; height: auto; min-height: 48px;
+}
+[data-baseweb="select"], [data-baseweb="select"] > div { max-width: 100%; min-width: 0; }
+[data-baseweb="select"] span { overflow-wrap: anywhere; white-space: normal; }
+.stExpander, .streamlit-expanderHeader { max-width: 100%; min-width: 0; overflow-wrap: anywhere; }
+.stExpander * { max-width: 100%; overflow-wrap: anywhere; }
+[data-testid="stAlert"] { max-width: 100%; min-width: 0; overflow-wrap: anywhere; }
+[data-testid="stAlert"] * { overflow-wrap: anywhere; }
+[data-testid="stDataFrame"] { max-width: 100%; min-width: 0; overflow-x: auto; box-sizing: border-box; }
+.stTextInput, .stTextArea, .stNumberInput, .stDateInput, .stTimeInput, .stSelectbox {
+    min-width: 0; max-width: 100%;
+}
+@media (max-width: 768px) {
+    .card, .admin-card, .profile-card, .admin-hero, .metric-card, .login-box, .welcome-bar {
+        width: 100%; max-width: 100%; box-sizing: border-box;
+    }
+    [data-testid="column"] { min-width: 0 !important; }
+    .stButton > button, .stDownloadButton > button { white-space: normal !important; height: auto; }
+}
+
+
+/* =========================================================
+   FLAT CONTENT CONTAINERS
+   Removes the large empty white card background while keeping
+   the existing content and application functionality.
+   ========================================================= */
+.card {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    margin-bottom: 24px !important;
+}
+.card:hover {
+    box-shadow: none !important;
+    transform: none !important;
+}
+.card > * {
+    max-width: 100%;
+    box-sizing: border-box;
+}
+/* Opening/closing card markdown blocks remain visually invisible. */
+.main .stMarkdown:has(> div.card:empty) {
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
 </style>
 """,
     unsafe_allow_html=True
@@ -1041,7 +1125,7 @@ def login_page():
 
             if st.button(
                 "Sign In",
-                use_container_width=True
+                width="stretch"
             ):
 
                 if email.strip() == "":
@@ -1114,7 +1198,7 @@ def login_page():
 
             if st.button(
                 "Login with OTP",
-                use_container_width=True
+                width="stretch"
             ):
 
                 if role == "Admin":
@@ -1186,7 +1270,7 @@ def login_page():
 
             if st.button(
                 "Verify OTP",
-                use_container_width=True
+                width="stretch"
             ):
 
                 if not otp_valid(
@@ -1269,7 +1353,7 @@ def login_page():
 
         if st.button(
             "Create New Account",
-            use_container_width=True
+            width="stretch"
         ):
 
             st.session_state.page = "Register"
@@ -1336,7 +1420,7 @@ def register_page():
 
         if st.button(
             "Send Registration OTP",
-            use_container_width=True
+            width="stretch"
         ):
 
             if name.strip() == "":
@@ -1443,7 +1527,7 @@ def register_page():
 
             if st.button(
                 "Verify & Create Account",
-                use_container_width=True
+                width="stretch"
             ):
 
                 if not otp_valid(
@@ -1499,7 +1583,7 @@ def register_page():
 
         if st.button(
             "← Back to Login",
-            use_container_width=True
+            width="stretch"
         ):
 
             st.session_state.page = "Login"
@@ -1527,7 +1611,7 @@ def admin_dashboard():
 
     st.markdown("## Administrator Workspace")
 
-    if st.button("← Back to Dashboard", use_container_width=False):
+    if st.button("← Back to Dashboard", width="content"):
         st.session_state.admin_page = "Dashboard"
         st.rerun()
 
@@ -1607,12 +1691,12 @@ def admin_home():
                     f"""<div class="admin-card"><div class="admin-icon">{icon}</div><div class="admin-card-title">{title}</div><div class="admin-card-text">{text}</div></div>""",
                     unsafe_allow_html=True
                 )
-                if st.button("Open", key="admin_open_" + title, use_container_width=True):
+                if st.button("Open", key="admin_open_" + title, width="stretch"):
                     st.session_state.admin_page = title
                     st.rerun()
 
     st.markdown("<br>", unsafe_allow_html=True)
-    if st.button("🚪 Logout", use_container_width=True):
+    if st.button("🚪 Logout", width="stretch"):
         logout()
 
 
@@ -1746,7 +1830,7 @@ def admin_courses():
 
         if st.button(
             "Create Course",
-            use_container_width=True
+            width="stretch"
         ):
 
             if title.strip() == "":
@@ -1830,7 +1914,7 @@ def admin_courses():
 
         if st.button(
             "Assign Instructor",
-            use_container_width=True
+            width="stretch"
         ):
 
             lms.assign_instructor(
@@ -1941,7 +2025,7 @@ def admin_attendance():
 
     st.dataframe(
         data,
-        use_container_width=True,
+        width="stretch",
         hide_index=True
     )
 
@@ -1981,7 +2065,7 @@ def admin_students():
 
         st.dataframe(
             display,
-            use_container_width=True,
+            width="stretch",
             hide_index=True
         )
 
@@ -2021,7 +2105,7 @@ def admin_instructors():
 
         st.dataframe(
             display,
-            use_container_width=True,
+            width="stretch",
             hide_index=True
         )
 
@@ -2048,7 +2132,7 @@ def admin_all_courses():
 
     st.dataframe(
         data,
-        use_container_width=True,
+        width="stretch",
         hide_index=True
     )
 
@@ -2223,10 +2307,10 @@ def admin_statistics():
             ax.barh(labels[::-1], vals[::-1])
             ax.set_xlabel("Count")
             chart_title(ax, "Platform Counts")
-            st.pyplot(fig, use_container_width=True)
+            st.pyplot(fig, width="stretch")
             plt.close(fig)
         with right:
-            st.dataframe(overview, use_container_width=True, hide_index=True)
+            st.dataframe(overview, width="stretch", hide_index=True)
 
     elif view == "Attendance":
         st.markdown("### 📅 Attendance Overview")
@@ -2243,12 +2327,12 @@ def admin_statistics():
                     fig, ax = plt.subplots(figsize=(5, 4.5))
                     ax.pie(totals.values, labels=totals.index, autopct="%1.1f%%", startangle=90, wedgeprops={"width": .42, "edgecolor": "white"})
                     ax.set_title("Overall Attendance", fontsize=15, fontweight="bold", color="#172554")
-                    st.pyplot(fig, use_container_width=True)
+                    st.pyplot(fig, width="stretch")
                     plt.close(fig)
                 with right:
                     attendance_view = attendance.copy()
                     attendance_view["Attendance %"] = (attendance_view["Present"] / (attendance_view["Present"] + attendance_view["Absent"]).replace(0, np.nan) * 100).fillna(0).round(1)
-                    st.dataframe(attendance_view.sort_values("Attendance %", ascending=False), use_container_width=True, hide_index=True)
+                    st.dataframe(attendance_view.sort_values("Attendance %", ascending=False), width="stretch", hide_index=True)
 
     elif view == "Student Exam Performance":
         st.markdown("### 📝 Student Exam Performance")
@@ -2276,9 +2360,9 @@ def admin_statistics():
                 chart_title(ax, "Average Exam Performance by Student")
                 for bar, value in zip(bars, student_avg["Percentage"]):
                     ax.text(bar.get_x() + bar.get_width()/2, value + 2, f"{value:.0f}%", ha="center", fontsize=9, fontweight="bold")
-                st.pyplot(fig, use_container_width=True)
+                st.pyplot(fig, width="stretch")
                 plt.close(fig)
-                st.dataframe(student_avg.round(1), use_container_width=True, hide_index=True)
+                st.dataframe(student_avg.round(1), width="stretch", hide_index=True)
 
     elif view == "Exam Performance Trend":
         st.markdown("### 📈 Exam Performance Trend")
@@ -2302,7 +2386,7 @@ def admin_statistics():
                 ax.set_ylim(0, 100)
                 chart_title(ax, "Average Exam Performance Over Time")
                 fig.autofmt_xdate()
-                st.pyplot(fig, use_container_width=True)
+                st.pyplot(fig, width="stretch")
                 plt.close(fig)
 
     elif view == "Course Statistics":
@@ -2321,9 +2405,9 @@ def admin_statistics():
             ax.set_ylabel("Number of Items")
             chart_title(ax, "Modules, Exams and Assignments by Course")
             ax.legend(frameon=False, ncols=3)
-            st.pyplot(fig, use_container_width=True)
+            st.pyplot(fig, width="stretch")
             plt.close(fig)
-            st.dataframe(course_data, use_container_width=True, hide_index=True)
+            st.dataframe(course_data, width="stretch", hide_index=True)
 
     elif view == "Instructor Workload":
         st.markdown("### 👨‍🏫 Instructor Course Workload")
@@ -2342,9 +2426,9 @@ def admin_statistics():
             ax.set_ylabel("Number of Courses")
             ax.tick_params(axis="x", rotation=25)
             chart_title(ax, "Courses Assigned to Each Instructor")
-            st.pyplot(fig, use_container_width=True)
+            st.pyplot(fig, width="stretch")
             plt.close(fig)
-            st.dataframe(workload, use_container_width=True, hide_index=True)
+            st.dataframe(workload, width="stretch", hide_index=True)
 
 
 # ==================================================
@@ -2437,7 +2521,7 @@ def admin_excel():
 
         st.dataframe(
             data,
-            use_container_width=True,
+            width="stretch",
             hide_index=True
         )
 
@@ -2570,7 +2654,7 @@ def instructor_dashboard():
                 if st.button(
                     icon + "  " + page_name,
                     key="instructor_nav_" + page_name.replace(" ", "_") ,
-                    use_container_width=True
+                    width="stretch"
                 ):
                     st.session_state.instructor_page = page_name
                     st.rerun()
@@ -2622,7 +2706,7 @@ def instructor_dashboard():
                     if st.button(
                         "Review Requests",
                         key="review_requests",
-                        use_container_width=True
+                        width="stretch"
                     ):
                         st.session_state.instructor_page = "Assign Students"
                         st.rerun()
@@ -2666,7 +2750,7 @@ def instructor_dashboard():
     if st.button(
         "🚪 Logout",
         key="instructor_logout",
-        use_container_width=True
+        width="stretch"
     ):
         logout()
 
@@ -2784,7 +2868,7 @@ def instructor_assign_students():
         if st.button(
             "✅ Assign Student",
             key="assign_" + str(row["EnrollmentID"]),
-            use_container_width=True
+            width="stretch"
         ):
             lms.update_enrollment_status(
                 row["EnrollmentID"],
@@ -2850,7 +2934,7 @@ def instructor_modules():
 
     st.caption("Add a YouTube, Google Drive, website, PDF or other learning URL. Students will use this link to watch/study the module.")
 
-    if st.button("➕ Add Module", use_container_width=True):
+    if st.button("➕ Add Module", width="stretch"):
         if not title.strip():
             st.error("Enter a module title.")
         elif not link.strip():
@@ -2885,7 +2969,7 @@ def instructor_modules():
                 if module_description:
                     st.write(module_description)
                 if module_link and module_link.lower() != "nan":
-                    st.link_button("▶️ Open Learning Link", module_link, use_container_width=True)
+                    st.link_button("▶️ Open Learning Link", module_link, width="stretch")
                 else:
                     st.warning("No learning link added.")
 
@@ -2933,7 +3017,7 @@ def instructor_tasks():
     task_title = st.text_input("Task Title", key="task_title")
     description = st.text_area("Task Description", key="task_description")
 
-    if st.button("➕ Add Task", use_container_width=True):
+    if st.button("➕ Add Task", width="stretch"):
         if not task_title.strip():
             st.error("Enter a task title.")
         else:
@@ -2979,7 +3063,7 @@ def instructor_assignments():
         key="assignment_marks"
     )
 
-    if st.button("➕ Create Assignment", use_container_width=True):
+    if st.button("➕ Create Assignment", width="stretch"):
         if not title.strip():
             st.error("Enter an assignment title.")
         else:
@@ -3169,7 +3253,7 @@ def instructor_exams():
 
     if st.button(
         "🚀 Create Exam",
-        use_container_width=True,
+        width="stretch",
         type="primary",
         key="create_subject_exam"
     ):
@@ -3337,7 +3421,7 @@ def instructor_attendance():
         if st.button(
             "💾 Save Attendance",
             key="save_attendance_" + student_id,
-            use_container_width=True
+            width="stretch"
         ):
             lms.mark_attendance(
                 course_id,
@@ -3399,7 +3483,7 @@ def instructor_students():
         })
 
     display = pd.DataFrame(result)
-    st.dataframe(display, use_container_width=True, hide_index=True)
+    st.dataframe(display, width="stretch", hide_index=True)
     st.markdown("---")
     st.subheader("🏆 Mark Course Completed")
     options = {}
@@ -3416,7 +3500,7 @@ def instructor_students():
     if not existing.empty:
         st.success("✅ This course is already marked completed and the certificate is available to the student.")
     else:
-        if st.button("🏆 Mark Course Completed", use_container_width=True, key="mark_course_completed"):
+        if st.button("🏆 Mark Course Completed", width="stretch", key="mark_course_completed"):
             certificate_id = lms.mark_course_completed(student_id, course_id, st.session_state.user_id)
             st.success(f"Course completed successfully. Certificate ID: {certificate_id}")
             st.rerun()
@@ -3438,14 +3522,14 @@ def instructor_results():
     if exam_results.empty:
         st.info("No exam results are available for your courses.")
     else:
-        st.dataframe(exam_results, use_container_width=True, hide_index=True)
+        st.dataframe(exam_results, width="stretch", hide_index=True)
 
     scores = _admin_assignment_data()
     if not scores.empty and course_ids:
         scores = scores[scores["CourseID"].astype(str).isin(course_ids)]
     if not scores.empty:
         st.subheader("Assignment Scores")
-        st.dataframe(scores, use_container_width=True, hide_index=True)
+        st.dataframe(scores, width="stretch", hide_index=True)
 
     st.markdown("---")
     st.subheader("🌐 Overall Platform Statistics")
@@ -3463,7 +3547,7 @@ def instructor_results():
     else:
         course_stats = _course_statistics()
         course_stats = course_stats[course_stats["Course"].isin(courses["Title"].astype(str))]
-        st.dataframe(course_stats, use_container_width=True, hide_index=True)
+        st.dataframe(course_stats, width="stretch", hide_index=True)
 
         import matplotlib.pyplot as plt
         if not course_stats.empty:
@@ -3542,7 +3626,7 @@ def student_dashboard():
                 if st.button(
                     icon + "  " + page_name,
                     key="student_nav_" + page_name.replace(" ", "_"),
-                    use_container_width=True
+                    width="stretch"
                 ):
                     st.session_state.student_page = page_name
                     st.rerun()
@@ -3580,7 +3664,7 @@ def student_dashboard():
     if st.button(
         "🚪 Logout",
         key="student_logout",
-        use_container_width=True
+        width="stretch"
     ):
         logout()
 
@@ -3811,7 +3895,7 @@ def student_courses():
         st.warning("You already have a pending request for this course.")
     elif st.button(
         "Request Enrollment",
-        use_container_width=True
+        width="stretch"
     ):
 
         success, result = lms.request_enrollment(
@@ -4015,14 +4099,14 @@ def student_modules():
                 st.link_button(
                     "▶️ Watch / Open Module",
                     link,
-                    use_container_width=True
+                    width="stretch"
                 )
 
                 if not completed:
                     if st.button(
                         "✅ Mark Module as Watched / Completed",
                         key="complete_module_" + module_id,
-                        use_container_width=True
+                        width="stretch"
                     ):
                         lms.save_progress(
                             st.session_state.user_id,
@@ -4224,7 +4308,7 @@ def student_attendance():
 
     st.dataframe(
         data,
-        use_container_width=True,
+        width="stretch",
         hide_index=True
     )
 
@@ -4444,7 +4528,7 @@ def student_exams():
 
         if st.button(
             "🚀 Start Exam",
-            use_container_width=True,
+            width="stretch",
             type="primary"
         ):
 
@@ -4519,7 +4603,7 @@ def student_exams():
 
         if st.button(
             "↩️ Back to Exams",
-            use_container_width=True
+            width="stretch"
         ):
 
             st.session_state.exam_id = None
@@ -4741,7 +4825,7 @@ def student_exams():
 
         if st.button(
             button_text,
-            use_container_width=True,
+            width="stretch",
             type="primary",
             key=f"next_{question_id}"
         ):
@@ -4788,7 +4872,7 @@ def student_results():
 
         st.dataframe(
             results,
-            use_container_width=True,
+            width="stretch",
             hide_index=True
         )
 
@@ -4804,7 +4888,7 @@ def student_results():
 
         st.dataframe(
             scores,
-            use_container_width=True,
+            width="stretch",
             hide_index=True
         )
 
@@ -4864,7 +4948,7 @@ def student_certificate():
         )
         st.markdown(card_html, unsafe_allow_html=True)
         pdf_bytes = _create_certificate_pdf(st.session_state.user_name, course_title, row["CertificateID"], row["CompletedDate"], instructor_name)
-        st.download_button("📄 Download Certificate", data=pdf_bytes, file_name=f"LearnHub_Certificate_{row['CertificateID']}.pdf", mime="application/pdf", key=f"certificate_download_{row['CertificateID']}", use_container_width=True)
+        st.download_button("📄 Download Certificate", data=pdf_bytes, file_name=f"LearnHub_Certificate_{row['CertificateID']}.pdf", mime="application/pdf", key=f"certificate_download_{row['CertificateID']}", width="stretch")
 
 
 # ==================================================
