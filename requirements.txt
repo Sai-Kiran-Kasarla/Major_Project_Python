@@ -1,5 +1,7 @@
 streamlit
-openpyxl
 pandas
 numpy
-matplotlib
+scikit-learn
+reportlab
+openpyxl
+Pillow
