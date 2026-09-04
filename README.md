@@ -116,4 +116,3 @@ LearnHub/
 ├── lms_data.xlsx
 ├── requirements.txt
 ├── README.md
-└── .gitignore
